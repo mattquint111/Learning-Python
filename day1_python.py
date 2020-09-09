@@ -11,7 +11,7 @@ def calculate_tip(bill_cost, tip_percentage):
     return bill_cost * tip_percentage/100
 
 print(calculate_tip(100,20))
-print(test)
-
+print('test')
+print('test2')
 
 
