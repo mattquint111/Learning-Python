@@ -5,7 +5,7 @@ test_list = [0, 1, 2, 3, 4, 5, 6, 8, 9]
 # Solution 1
 def find_missing(list):
 
-    for i in range(len(list) - 1):
+    for i in range(len(list)):
         if i not in list:
             return i
 

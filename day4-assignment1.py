@@ -17,4 +17,4 @@ unique_names_set = set(names)
 unique_list = list(unique_names_set)
 print(sorted(unique_list))
 
-      
+print(set(names))    
