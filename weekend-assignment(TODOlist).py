@@ -7,12 +7,16 @@ tasks = []
 # program wrapped in while loop to keep running until user quits
 while active:
     # message giving the user list of choices to pick from
-    menu_message = "\nTO-DO List app, please select an option from the following choices:\n"
+    menu_message = "----------------------------"
+    menu_message += "\nTO-DO List app, please select an option from the following choices:\n"
+    menu_message += "----------------------------"
     menu_message += "\nPress 1 to add task"
     menu_message += "\nPress 2 to delete task"
     menu_message += "\nPress 3 to view all tasks"
     menu_message += "\nPress q to quit\n"
+    menu_message += "----------------------------"
     print(menu_message)
+    
     # ask user for command choice
     user_choice = input("Enter choice: ")
     # code to run if user chooses 1 - add task
@@ -24,8 +28,10 @@ while active:
         task = {'title' : task_title, 'priority': task_priority}
         task_copy = task.copy()
         tasks.append(task_copy)
-        print(f"\nTASK: {task_title} / PRIORITY: {task_priority} added to task list")
-        
+        print("----------------------------")
+        print(f"\nTASK: {task_title} / PRIORITY: {task_priority}\nadded to task list")
+        print("----------------------------")
+                
     # code to run if user chooses 2 - delete task
     elif user_choice == '2':
         # get title of task to delete from user
@@ -45,5 +51,6 @@ while active:
 
     # code to run if user chooses q - quit app
     elif user_choice == 'q':
-        print('GOODBYE')   
+        print("----------------------------")
+        print('--- GOODBYE ---')   
         active = False
