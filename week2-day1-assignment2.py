@@ -55,9 +55,18 @@ while flag:
         print(user.shopping_lists[0])
     
     elif user_choice == 2:
-        #delete shopping list
-        pass
+        print("CURRENT SHOPPING LISTS:")
+        for i in range(len(user.shopping_lists)):
+            print(f"{i+1}. {user.shopping_lists[i].store}")
+
+        list_to_add = int(input("Enter number of list to add to: "))
         
+        while True:
+            new_item = input("Enter item to add to list or enter 'stop' to end: ")
+            if new_item == 'stop':
+                break
+            else:
+                user.shopping_lists[list_to_add - 1].items.append(new_item)
     
     elif user_choice == 3:
         #print out all shopping lists
