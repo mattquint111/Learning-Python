@@ -25,7 +25,8 @@ def app_options():
     1. Create shopping list
     2. Add item to shopping list
     3. Display shopping lists
-    4. Quit
+    4. Delete shopping list
+    5. Quit
     --------------------------    
     """)
     
@@ -37,7 +38,7 @@ while flag:
     app_options()
     user_choice = int(input("Enter number of option: "))
 
-    if user_choice == 4:
+    if user_choice == 5:
         flag = False
     
     elif user_choice == 1:
@@ -45,7 +46,7 @@ while flag:
         items = []
         
         while True:
-            item = input("Enter item to add to list or type stop to end list: ")
+            item = input("Enter item to add to list or type 'stop' to end list: ")
             if item == 'stop':
                 break
             else:
@@ -73,3 +74,12 @@ while flag:
         for i in range(len(user.shopping_lists)):
             print(f"STORE: {user.shopping_lists[i].store}\nITEMS: {user.shopping_lists[i].items}\n-------------------")
 
+
+    elif user_choice == 4:
+        print("CURRENT SHOPPING LISTS:")
+        for i in range(len(user.shopping_lists)):
+            print(f"{i+1}. {user.shopping_lists[i].store}")
+        
+        list_to_delete = int(input("Enter number of list to delete: "))
+        print(f"DELETING LIST: {user.shopping_lists[i - 1].store}")
+        user.shopping_lists.pop(i - 1)
