@@ -11,9 +11,20 @@ while active == True:
         active = False
     # user chooses 1. VIEW ALL TABLES
     elif  user_choice == 1:
-        for table in tables:
-            print(f"NAME: {table.name} - STATUS: {table.status}")
+        tables_status()
     # user chooses 2. CHOOSE TABLE
     elif  user_choice == 2:
-        table_choice = int(input("Enter number of table to choose: "))
+        # choose number of table to view
+        table_choice = pick_table()
         #print out all data for specific table
+        table_info(table_choice)
+    # user chooses 3. CHECK-OUT TABLE
+    elif user_choice == 3:
+        table_choice = pick_table()
+        user_name = input("Enter name of person checking out table: ")
+        check_out(table_choice, user_name)
+    # user chooses 4. CHECK-In TABLE
+    elif user_choice == 4:
+        table_choice = pick_table()
+        #check_in(table_choice)
+        check_in(table_choice)
