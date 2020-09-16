@@ -1,15 +1,13 @@
 import datetime
 
-#current date/time
-dt = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 # function to find difference in date/times
-def time_difference(start_time,end_time):
-    start = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M')
-    ends = datetime.datetime.strptime(end_time, '%Y-%m-%d %H:%M')
-    diff = start - ends
-    hours = int(diff.seconds // (60 * 60))
-    mins = int((diff.seconds // 60) % 60)
-    return f"HOURS = {hours}, MINS = {mins}"         
+# def time_difference(start_time,end_time):
+#     start = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M')
+#     ends = datetime.datetime.strptime(end_time, '%Y-%m-%d %H:%M')
+#     diff = start - ends
+#     hours = int(diff.seconds // (60 * 60))
+#     mins = int((diff.seconds // 60) % 60)
+#     return f"HOURS = {hours}, MINS = {mins}"         
 
 # App Function Module
 def welcome_msg():
@@ -53,12 +51,12 @@ def pick_table():
 def table_info(table_choice):
     table = tables[table_choice - 1]
     print(f"""
-    NAME:------------------{table.name}
-    STATUS:----------------{table.status}
-    START DATE/TIME:-------{table.start_time}
-    END DATE/TIME:---------{table.end_time}
-    TOTAL TIME PLAYED:-----{table.time_played}
-    LAST CHECKED OUT BY:---{table.last_user}
+    NAME:------------------ {table.name}
+    STATUS:---------------- {table.status}
+    START DATE/TIME:------- {table.start_time}
+    END DATE/TIME:--------- {table.end_time}
+    TOTAL TIME PLAYED:----- {table.time_played}
+    LAST CHECKED OUT BY:--- {table.last_user}
     """)
 
 # check out a table and update information
@@ -67,7 +65,7 @@ def check_out(table_number, user):
     if table.status == "UNOCCUPIED":
         table.status = 'OCCUPIED'
         table.last_user = user
-        table.start_time = dt
+        table.start_time = datetime.datetime.now()
         print(f"{table.name} has been checked out at {table.start_time} by: {table.last_user}")
     else:
         print(f"{table.name} is already checked out, please choose another table")
@@ -77,9 +75,14 @@ def check_in(table_number):
     table = tables[table_number - 1]
     if table.status == "OCCUPIED":
         table.status = "UNOCCUPIED"
-        table.end_time = dt
-        table.time_played = time_difference(table.start_time, table.end_time)
+        table.end_time = datetime.datetime.now()
+        table.time_played = table.end_time - table.start_time
         print(f"{table.name} has been checked in by: {table.last_user}\n TOTAL PLAY TIME = {table.time_played}")
+
+        # write table data to txt file when table is checked back in
+        with open('table_data.txt', 'a') as f:
+            f.write(f"NAME:{table.name}, USER:{table.last_user}, START_TIME:{table.start_time}, END_TIME:{table.end_time}, TOTAL_TIME_PLAYED:{table.time_played}\n")
+
     else:
         print(f"{table.name} is not currently checked out, please choose a checked out table to check in.")
 

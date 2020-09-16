@@ -1,7 +1,6 @@
 from datetime import datetime
 
 start_time = datetime.now()
-input("Wait...")
 end_time = datetime.now()
 
 # is of type timedelta = end_time - start_time
