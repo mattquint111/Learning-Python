@@ -1,13 +1,4 @@
-import datetime
-
-# function to find difference in date/times
-# def time_difference(start_time,end_time):
-#     start = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M')
-#     ends = datetime.datetime.strptime(end_time, '%Y-%m-%d %H:%M')
-#     diff = start - ends
-#     hours = int(diff.seconds // (60 * 60))
-#     mins = int((diff.seconds // 60) % 60)
-#     return f"HOURS = {hours}, MINS = {mins}"         
+import datetime     
 
 # App Function Module
 def welcome_msg():
@@ -27,8 +18,14 @@ class Table:
     def __init__(self, name):
         self.name = name
         self.status = 'UNOCCUPIED'
+        self.date_start = ''
         self.start_time = ''
         self.end_time = ''
+        self.start_counter = ''
+        self.end_counter = ''
+        self.price_start = ''
+        self.price_end = ''
+        self.price_counter = ''
         self.time_played = ''
         self.last_user = ''
 # empty list to hold table objects (1-12)     
@@ -38,6 +35,14 @@ def create_tables():
     for index in range(12):
         table = Table('Table ' + str(index+1))
         tables.append(table)
+
+def calc_cost(price_counter):
+    if price_counter == 0:
+        total = 30
+    else:
+        total = 30 + (30 * price_counter)
+    
+    return total
 
 # print the status of all tables
 def tables_status():
@@ -53,8 +58,8 @@ def table_info(table_choice):
     print(f"""
     NAME:------------------ {table.name}
     STATUS:---------------- {table.status}
-    START DATE/TIME:------- {table.start_time}
-    END DATE/TIME:--------- {table.end_time}
+    START TIME:------------ {table.start_time}
+    END TIME:-------------- {table.end_time}
     TOTAL TIME PLAYED:----- {table.time_played}
     LAST CHECKED OUT BY:--- {table.last_user}
     """)
@@ -65,8 +70,13 @@ def check_out(table_number, user):
     if table.status == "UNOCCUPIED":
         table.status = 'OCCUPIED'
         table.last_user = user
-        table.start_time = datetime.datetime.now()
+        table.date_start = datetime.datetime.now().strftime("%Y/%m/%d")
+        table.start_counter = datetime.datetime.now()
+        table.price_start = int(datetime.datetime.now().strftime("%H"))
+        table.start_time = datetime.datetime.now().strftime("%H:%M")
+        table.date_start = datetime.datetime.now().strftime("%Y/%m/%d")
         print(f"{table.name} has been checked out at {table.start_time} by: {table.last_user}")
+        
     else:
         print(f"{table.name} is already checked out, please choose another table")
 
@@ -75,18 +85,23 @@ def check_in(table_number):
     table = tables[table_number - 1]
     if table.status == "OCCUPIED":
         table.status = "UNOCCUPIED"
-        table.end_time = datetime.datetime.now()
-        table.time_played = table.end_time - table.start_time
-        print(f"{table.name} has been checked in by: {table.last_user}\n TOTAL PLAY TIME = {table.time_played}")
-
+        table.end_counter = datetime.datetime.now()
+        table.price_end = int(datetime.datetime.now().strftime("%H"))
+        table.end_time = datetime.datetime.now().strftime("%H:%M")
+        table.time_played = table.end_counter- table.start_counter
+        table.price_counter = table.price_end - table.price_start
+        print(f"{table.name} has been checked in by: {table.last_user}\nTOTAL PLAY TIME = {table.time_played}")
+        total_price = calc_cost(table.price_counter)
+        print(f"TOTAL PRICE = {total_price}")
         # write table data to txt file when table is checked back in
         with open('table_data.txt', 'a') as f:
-            f.write(f"NAME:{table.name}, USER:{table.last_user}, START_TIME:{table.start_time}, END_TIME:{table.end_time}, TOTAL_TIME_PLAYED:{table.time_played}\n")
+            f.write(f"DATE:{table.date_start}, NAME:{table.name}, USER:{table.last_user}, START_TIME:{table.start_time}, END_TIME:{table.end_time}, TOTAL_TIME_PLAYED:{table.time_played}, TOTAL_COST:{total_price}\n")
 
     else:
         print(f"{table.name} is not currently checked out, please choose a checked out table to check in.")
 
-##############TESTING##############
+# function to calculate price for table with $30/hr
+
 
 
     
