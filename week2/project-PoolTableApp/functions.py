@@ -54,7 +54,15 @@ def tables_status():
         print(f"NAME: {tables[index].name} - STATUS: {tables[index].status}")
 # table choice function to pick number of particular table
 def pick_table():
-    return int(input("Enter number of table to choose: "))
+    # make sure a valid integer value is entered for table number
+    while True:
+        try:
+            number = int(input("Enter number of table to choose: "))
+        except ValueError:
+            print('Please enter a valid number')
+        else:
+            break
+    return number
 #choose a particular table and see all information
 def table_info(table_choice):
     table = tables[table_choice - 1]
