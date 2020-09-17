@@ -46,9 +46,12 @@ def calc_cost(price_counter):
 
 # print the status of all tables
 def tables_status():
-    for table in tables:
-        print(f"NAME: {table.name} - STATUS: {table.status}")
-
+    # for table in tables:
+    #     print(f"NAME: {table.name} - STATUS: {table.status}")
+    for index in range(0,9):
+        print(f"NAME: {tables[index].name}  - STATUS: {tables[index].status}")
+    for index in range(10,12):
+        print(f"NAME: {tables[index].name} - STATUS: {tables[index].status}")
 # table choice function to pick number of particular table
 def pick_table():
     return int(input("Enter number of table to choose: "))
@@ -65,20 +68,21 @@ def table_info(table_choice):
     """)
 
 # check out a table and update information
-def check_out(table_number, user):
+def check_out(table_number):
     table = tables[table_number - 1]
     if table.status == "UNOCCUPIED":
+        user_name = input("Enter name of person checking out table: ")
         table.status = 'OCCUPIED'
-        table.last_user = user
+        table.last_user = user_name
         table.date_start = datetime.datetime.now().strftime("%Y/%m/%d")
         table.start_counter = datetime.datetime.now()
         table.price_start = int(datetime.datetime.now().strftime("%H"))
         table.start_time = datetime.datetime.now().strftime("%H:%M")
         table.date_start = datetime.datetime.now().strftime("%Y/%m/%d")
-        print(f"{table.name} has been checked out at {table.start_time} by: {table.last_user}")
+        print(f"\n{table.name} has been checked out at {table.start_time} by: {table.last_user}")
         
     else:
-        print(f"{table.name} is already checked out, please choose another table")
+        print(f"\n{table.name} is already checked out, please choose another table")
 
 #check in a table and update information
 def check_in(table_number):
@@ -90,7 +94,7 @@ def check_in(table_number):
         table.end_time = datetime.datetime.now().strftime("%H:%M")
         table.time_played = table.end_counter- table.start_counter
         table.price_counter = table.price_end - table.price_start
-        print(f"{table.name} has been checked in by: {table.last_user}\nTOTAL PLAY TIME = {table.time_played}")
+        print(f"\n{table.name} has been checked in by: {table.last_user}\nTOTAL PLAY TIME = {table.time_played}")
         total_price = calc_cost(table.price_counter)
         print(f"TOTAL PRICE = ${total_price}")
         # write table data to txt file when table is checked back in
@@ -98,7 +102,7 @@ def check_in(table_number):
             f.write(f"DATE:{table.date_start}, NAME:{table.name}, USER:{table.last_user}, START_TIME:{table.start_time}, END_TIME:{table.end_time}, TOTAL_TIME_PLAYED:{table.time_played}, TOTAL_COST:{total_price}\n")
 
     else:
-        print(f"{table.name} is not currently checked out, please choose a checked out table to check in.")
+        print(f"\n{table.name} is not currently checked out, please choose a checked out table to check in.")
 
 # function to calculate price for table with $30/hr
 

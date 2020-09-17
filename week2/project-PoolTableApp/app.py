@@ -21,8 +21,7 @@ while active == True:
     # user chooses 3. CHECK-OUT TABLE
     elif user_choice == 3:
         table_choice = pick_table()
-        user_name = input("Enter name of person checking out table: ")
-        check_out(table_choice, user_name)
+        check_out(table_choice)
     # user chooses 4. CHECK-In TABLE
     elif user_choice == 4:
         table_choice = pick_table()
