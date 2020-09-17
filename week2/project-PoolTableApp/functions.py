@@ -92,7 +92,7 @@ def check_in(table_number):
         table.price_counter = table.price_end - table.price_start
         print(f"{table.name} has been checked in by: {table.last_user}\nTOTAL PLAY TIME = {table.time_played}")
         total_price = calc_cost(table.price_counter)
-        print(f"TOTAL PRICE = {total_price}")
+        print(f"TOTAL PRICE = ${total_price}")
         # write table data to txt file when table is checked back in
         with open('table_data.txt', 'a') as f:
             f.write(f"DATE:{table.date_start}, NAME:{table.name}, USER:{table.last_user}, START_TIME:{table.start_time}, END_TIME:{table.end_time}, TOTAL_TIME_PLAYED:{table.time_played}, TOTAL_COST:{total_price}\n")

@@ -1,11 +1,11 @@
 import unittest
 import datetime
-from functions import Table
+import functions as f
 
 
 class TestTable(unittest.TestCase):
     def setUp(self):
-        self.table = Table('table 1')
+        self.table = f.Table('table 1')
 
     def test_status(self):
             self.assertEqual("UNOCCUPIED", self.table.status)

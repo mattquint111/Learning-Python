@@ -77,9 +77,6 @@
 #     else:
 #         print(soln)
 
-# JSON
-import json
-
 # with open('username.json', 'w') as f:
 #     json.dump(username, f)
 #     print(f"We'll remember you when you come back, {username}")
@@ -126,16 +123,54 @@ import json
 # print(tesla.make, tesla.model, tesla.battery_size)
 
 # Exception Handling
-while True:
-    first_number = int(input("Enter a number: "))
-    second_number = int(input("Enter a second number: "))
+# while True:
+    
+#     try:
+#         first_number = int(input("Enter a number: "))
+#         second_number = int(input("Enter a second number: "))
+#         print(first_number / second_number)
+#     except ValueError:
+#         print("Enter a valid number")
+#     except ZeroDivisionError:
+#         print("Second number can't be zero")
 
-    try:
-        print(first_number / second_number)
-    except ValueError:
-        print("Please enter a valid number")    
-    except ZeroDivisionError:
-        print("Second number can't be zero")
-    except:
-        print("Something went wrong")
+# Reading from a file
 
+# with open('emails.txt') as f:
+#     email_list = f.read()
+
+# email_list = email_list.split(', ')
+
+
+# unique_email_list = []
+# for email in email_list:
+#     if email not in unique_email_list:
+#         unique_email_list.append(email.strip())
+
+# unique_emails_formatted = []
+# for email in unique_email_list:
+#     unique_emails_formatted.append(email.strip())
+
+# duplicate_free_emails = ', '.join(unique_emails_formatted)
+
+# with open('duplicate-free-email-list2.txt', 'w') as f:
+#     f.write(duplicate_free_emails)
+
+# JSON
+# import json
+
+# users = []
+
+# while True:
+#     name = input("Enter name: ")
+#     age = int(input("Enter age: "))
+
+#     user = {"name": name, "age": age}
+#     users.append(user)
+
+#     with open("users.json", 'w') as file_object:
+#         json.dump(users, file_object)
+
+#     choice = input("Conitnue or 'q' to quit: ")
+#     if choice == 'q':
+#         break
