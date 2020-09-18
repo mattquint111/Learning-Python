@@ -174,3 +174,59 @@
 #     choice = input("Conitnue or 'q' to quit: ")
 #     if choice == 'q':
 #         break
+
+# Day 5
+# Activity: Stack
+
+
+# class Stack:
+#     def __init__(self):
+#         self.items = []
+
+#     def push(self, item):
+#         self.items.append(item)
+
+#     def pop(self, index=-1):
+#         if self.items:
+#             popped = self.items[index]
+#             self.items.remove(self.items[index])
+#         else:
+#             return None
+#         return popped
+
+
+# class Queue:
+#     def __init__(self):
+#         self.items = []
+
+#     def enqueue(self, item):
+#         self.items.insert(0, item)
+    
+#     def dequeue(self):
+#         first = self.items[0]
+#         self.items.remove(self.items[0])
+#         return first
+# import random
+
+# test_list = []
+# for i in range(0,10):
+#     test_list.append(random.randint(1,11))
+# print(test_list)
+
+# def bubble_sort_asc(list):
+#     for i in range(len(list)):
+#         for j in range(len(list) - 1):
+#             if list[j] > list[j+1]:
+#                 list[j], list[j+1] = list[j+1], list[j]
+#     return list
+
+# print(bubble_sort_asc(test_list))
+
+# def bubble_sort_desc(list):
+#     for i in range(len(list)):
+#         for j in range(len(list) - 1):
+#             if list[j] < list[j+1]:
+#                 list[j], list[j+1] = list[j+1], list[j]
+#     return list
+
+# print(bubble_sort_desc(test_list))
